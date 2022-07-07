@@ -1,0 +1,81 @@
+<%= if @live_action in [:new, :edit] do %>
+  <%= live_modal GovernWeb.PermitLive.FormComponent,
+    id: @permit.id || :new,
+    title: @page_title,
+    action: @live_action,
+    permit: @permit,
+    return_to: Routes.permit_index_path(@socket, :index) %>
+<% end %>
+
+  
+<div class="p-4">
+  <div class="columns is-mobile is-hidden-desktop">
+    <div class="column is-3-mobile">        
+      <%= link to: "/", class: "button is-fullwidth is-ghost is-hidden-desktop is-small" do %>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon" fill="dodgerblue"><path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"/></svg>
+      <% end %>
+    </div>
+
+    <div class="column is-3-mobile">        
+      <%= link to: "/", class: "is-fullwidth button is-ghost is-hidden-desktop is-small" do %>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon" fill="dodgerblue" stroke="dodgerblue"><path d="M448 0H64C28.7 0 0 28.7 0 64v288c0 35.3 28.7 64 64 64h96v84c0 9.8 11.2 15.5 19.1 9.7L304 416h144c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64z"/></svg>       
+      <% end %>
+    </div>
+    
+    <div class="column is-3-mobile">        
+    </div>
+
+    <div class="column is-3-mobile">        
+    </div>
+  </div>
+
+
+
+  <div class="columns is-mobile is-multiline">      
+    <div class="column is-12-mobile is-3-desktop">
+      <div class="nav panel is-info" style="background-color: white;">
+        <div class="panel-heading">
+          Permits
+          <div class="is-pulled-right">
+
+          </div>     
+        </div>
+        <div class="panel-block">
+        </div>
+      </div>
+    </div>
+
+    <div class="column is-9-desktop is-12-mobile">
+
+      <div id="permits" class="columns is-mobile is-multiline mt-4" phx-update="prepend">  
+        <%= for permit <- @permits do %>
+          <div class="column is-4-desktop is-12-mobile" id={permit.id}>
+            <div class="card card-equal-height p-3">
+              <img src={permit.photo}>
+              <%= live_redirect to: Routes.permit_show_path(@socket, :show, permit) do %>
+                <h2 class="title"><%= permit.name %></h2>
+              <% end %>
+              <%= permit.status %>
+              <div class="tag">                
+                <%= permit.step %>
+              </div>
+              <%= if permit.step == "processing" do %>                
+                <button class="button is-danger" phx-click="wait" phx-value-id={permit.id} phx-disable-with="Working..">Change to Idle</button>
+              <% else %>
+                <button class="button is-primary" phx-click="process" phx-value-id={permit.id} phx-disable-with="Working..">Change to Processing</button>
+              <% end %>                
+
+              <div class="card-footer">
+                <div class="card-footer-item">                  
+                  <div class="subtitle is-7">                 
+                    <i><%= permit.inserted_at %></i>
+                  </div> 
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

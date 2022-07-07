@@ -1,0 +1,71 @@
+<%# <style type="text/css">
+  html, body {background-color: white !important;}
+</style> %>
+  
+<div class="p-4">
+  <div class="columns is-mobile is-hidden-desktop">
+    <div class="column is-3-mobile">        
+      <%= link to: "/", class: "button is-fullwidth is-ghost is-hidden-desktop is-small" do %>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon" fill="dodgerblue"><path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"/></svg>
+      <% end %>
+    </div>
+
+    <div class="column is-3-mobile">        
+      <%= link to: "/", class: "is-fullwidth button is-ghost is-hidden-desktop is-small" do %>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon" fill="dodgerblue" stroke="dodgerblue"><path d="M448 0H64C28.7 0 0 28.7 0 64v288c0 35.3 28.7 64 64 64h96v84c0 9.8 11.2 15.5 19.1 9.7L304 416h144c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64z"/></svg>       
+      <% end %>
+    </div>
+    
+    <div class="column is-3-mobile">        
+    </div>
+
+    <div class="column is-3-mobile">        
+    </div>
+  </div>
+
+
+
+  <div class="columns is-mobile is-multiline">      
+    <div class="column is-12-mobile is-3-desktop">
+      <div class="nav panel is-info" style="background-color: white;">
+        <div class="panel-heading">
+          Articles
+          <div class="is-pulled-right">
+            <%= link to: Routes.article_path(@conn, :new), class: "has-text-white" do %>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon p-1" fill="white"><path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"/></svg>
+            <% end %>
+          </div>     
+        </div>
+        <div class="panel-block">
+        </div>
+      </div>
+    </div>
+
+    <div class="column is-9-desktop is-12-mobile">
+
+      <div class="columns is-mobile is-multiline mt-4">  
+        <%= for art <- @articles do %>
+          <div class="column is-4-desktop is-12-mobile">
+            <div class="card card-equal-height">
+              <div class="card-image">
+                <img src={art.photo}>
+              </div>
+              <div class="card-content">
+                <div class="subtitle is-3">
+                  <%= link "#{art.name}", to: Routes.article_path(@conn, :show, art) %>
+                </div>
+                <div class="card-footer">
+                  <div class="card-footer-item">                  
+                    <div class="subtitle is-7">                 
+                      <i><%= art.inserted_at %></i>
+                    </div> 
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

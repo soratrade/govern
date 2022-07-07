@@ -1,0 +1,47 @@
+<div class="p-4">
+  <div class="columns is-mobile">
+    <div class="column is-hidden-mobile is-3-desktop">
+      <%= link to: Routes.article_path(@conn, :index), class: "button is-info is-small is-fullwidth" do %>
+        <%= gettext "Articles" %>
+      <% end %>
+      <div class="card border-info">
+        <div class="card-content">  
+          <div class="columns">
+            <div class="column is-4">           
+              <div class="h">Publication date</div>                         
+            </div>
+            <div class="column is-8">           
+              <div class="h"><%= @article.inserted_at %></div>        
+            </div>            
+          </div>
+
+          <div class="columns">
+            <div class="column is-4 h">           
+              Author
+            </div>
+            <div class="p-4 has-text-centered">
+              <figure class="image p-4">
+                <img class="is-rounded" src={@article.user_id}>             
+              </figure>
+            </div>                         
+          </div>
+        </div>      
+      </div>
+    </div>
+
+    <div class="column is-hidden-mobile is-9-desktop">
+      <div class="card">
+        <div class="card-image">
+          <img src={@article.photo} style="width: 100%">
+        </div>
+        <div class="card-content">
+          <h1 class="title is-1"> <%= @article.name %> </h1>
+          <div class="pt-1">
+            <%= raw @article.content %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

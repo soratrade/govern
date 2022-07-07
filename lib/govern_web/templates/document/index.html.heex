@@ -1,0 +1,32 @@
+<div class="p-4">
+  <div class="columns">
+    <div class="column is-3">
+      <div class="nav panel is-info">
+        <div class="panel-heading">
+          Documents and Forms
+        </div>
+        <div class="p-2 is-white">
+        </div>
+      </div>
+    </div>
+
+    <div class="column is-9-desktop is-12-mobile">
+      <%= for item <- @documents do %>
+        <div class="card p-3 m-3">
+          <div class="columns is-mobile">      
+            <div class="column is-9">
+              <div class="subtitle is-4">
+                <%= item.name %>
+              </div>
+              <br>
+              <%= item.description %>              
+            </div>
+            <div class="column is-3">                            
+              <%= link "Download", to: item.link, class: "button is-primary is-fullwidth" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

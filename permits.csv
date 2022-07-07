@@ -1,0 +1,5 @@
+name, :photo, :status, step, :user_id
+Gerry's Grill Registration,/images/g01.png,require document,1,2
+Mark Dy Building Renovation,/images/g02.png,waiting for update,3,3
+Application for Electric utility,/images/g03.png,missing requirements,2,4
+Clearing operation,/images/g04.png,require document,1,5

@@ -1,0 +1,96 @@
+<div class="p-4 container">
+  <div class="card p-4">
+    <h1 class="title is-3"> 
+      <%= gettext "Register" %>
+    </h1>
+
+    <%= form_for @changeset, @action, [as: :user], fn f ->  %>
+      
+      <div class="field">
+        <div class="heading">
+          <%= label f, Pow.Ecto.Schema.user_id_field(@changeset) %> 
+          <%= error_tag f, Pow.Ecto.Schema.user_id_field(@changeset) %>
+        </div>
+        <div class="control has-icons-left is-expanded">
+          <svg width="20" height="20" class="icon p-3" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg" stroke-width="2" stroke="currentColor" fill="currentColor">
+            <path d="M1792 710v794q0 66-47 113t-113 47h-1472q-66 0-113-47t-47-113v-794q44 49 101 87 362 246 497 345 57 42 92.5 65.5t94.5 48 110 24.5h2q51 0 110-24.5t94.5-48 92.5-65.5q170-123 498-345 57-39 100-87zm0-294q0 79-49 151t-122 123q-376 261-468 325-10 7-42.5 30.5t-54 38-52 32.5-57.5 27-50 9h-2q-23 0-50-9t-57.5-27-52-32.5-54-38-42.5-30.5q-91-64-262-182.5t-205-142.5q-62-42-117-115.5t-55-136.5q0-78 41.5-130t118.5-52h1472q65 0 112.5 47t47.5 113z"/>
+          </svg>
+
+          <%= text_input f, Pow.Ecto.Schema.user_id_field(@changeset), class: "input" %>
+        </div>                  
+      </div>
+
+      <div class="field">
+        <div class="heading">
+          <%= label f, :name %> 
+          <%= error_tag f, :name %>
+        </div>
+        <div class="control has-icons-left is-expanded">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon p-3" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z"/>
+            <circle cx="12" cy="7" r="4" />
+            <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+          </svg>
+
+          <%= text_input f, :name, class: "input" %>
+        </div>                  
+      </div>      
+
+      <div class="field">
+        <div class="heading">
+          <%= label f, :password %> 
+          <%= error_tag f, :password %>
+        </div>
+        <div class="control has-icons-left is-expanded">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon p-3" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z"/>
+            <line x1="5" y1="9" x2="19" y2="9" />
+            <line x1="5" y1="15" x2="19" y2="15" />
+            <line x1="11" y1="4" x2="7" y2="20" />
+            <line x1="17" y1="4" x2="13" y2="20" />
+          </svg>          
+          <%= password_input f, :password, class: "input" %>
+        </div>                  
+      </div>      
+
+      <div class="field">
+        <div class="heading">
+          <%= label f, :password_confirmation %> 
+          <%= error_tag f, :password_confirmation %>
+        </div>
+        <div class="control has-icons-left is-expanded">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon p-3" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z"/>
+            <line x1="5" y1="9" x2="19" y2="9" />
+            <line x1="5" y1="15" x2="19" y2="15" />
+            <line x1="11" y1="4" x2="7" y2="20" />
+            <line x1="17" y1="4" x2="13" y2="20" />
+          </svg>          
+          <%= password_input f, :password_confirmation, class: "input" %>
+        </div>                  
+      </div>      
+
+      <div class="field">
+        <div class="heading">
+          <%= label f, gettext "Avatar URL" %> 
+          <%= error_tag f, :photo %>
+        </div>
+        <div class="control has-icons-left is-expanded">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" class="p-2 icon" fill="currentColor"><path d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm0 448c-110.3 0-200-89.7-200-200S137.7 56 248 56s200 89.7 200 200-89.7 200-200 200zm84-143.4c-20.8 25-51.5 39.4-84 39.4s-63.2-14.3-84-39.4c-8.5-10.2-23.6-11.5-33.8-3.1-10.2 8.5-11.5 23.6-3.1 33.8 30 36 74.1 56.6 120.9 56.6s90.9-20.6 120.9-56.6c8.5-10.2 7.1-25.3-3.1-33.8-10.2-8.4-25.3-7.1-33.8 3.1zM136.5 211c7.7-13.7 19.2-21.6 31.5-21.6s23.8 7.9 31.5 21.6l9.5 17c2.1 3.7 6.2 4.7 9.3 3.7 3.6-1.1 6-4.5 5.7-8.3-3.3-42.1-32.2-71.4-56-71.4s-52.7 29.3-56 71.4c-.3 3.7 2.1 7.2 5.7 8.3 3.4 1.1 7.4-.5 9.3-3.7l9.5-17zM328 152c-23.8 0-52.7 29.3-56 71.4-.3 3.7 2.1 7.2 5.7 8.3 3.5 1.1 7.4-.5 9.3-3.7l9.5-17c7.7-13.7 19.2-21.6 31.5-21.6s23.8 7.9 31.5 21.6l9.5 17c2.1 3.7 6.2 4.7 9.3 3.7 3.6-1.1 6-4.5 5.7-8.3-3.3-42.1-32.2-71.4-56-71.4z"/></svg>
+          <%= text_input f, :photo, class: "input", value: "/images/blankavatar.png" %>
+        </div>                  
+      </div>      
+
+      <div class="buttons">
+        <%= submit class: "button is-primary" do %>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon p-1" fill="currentColor"><path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"/></svg>
+          <span class="pl-2">        <%= gettext("Register") %></span>
+        <% end %>
+        <%= link "Sign in", to: Routes.pow_session_path(@conn, :new), class: "button is-light" %>
+      </div>
+    <% end %>
+
+
+  </div>
+</div>
+

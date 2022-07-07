@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="language" content="en-US" />    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/favicon.png" /> 
+    <link rel="icon" type="image/x-icon" href="/favicon.png">
+
+    <%= csrf_meta_tag() %>
+    
+    <title>Pantry Govern -- Pasig </title>
+    <meta name="title" content="Pantry Govern -- Pasig">
+    <meta name="description" content="Pantry Govern is a easy government services"  />
+
+
+    <meta property="og:site_name" content="Pantry Govern" />
+    <meta property="og:type" content="website" />
+
+
+    <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
+    <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
+
+  </head>
+
+  <body>
+    <%= render "nav.html", conn: @conn, current_user: @current_user %>
+    <%= @inner_content %>
+  </body>
+</html>

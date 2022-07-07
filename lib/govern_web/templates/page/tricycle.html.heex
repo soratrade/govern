@@ -1,0 +1,242 @@
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js"></script>
+
+<%# <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.js"></script>
+<link rel="icon" type="image/x-icon" href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.css" rel="stylesheet"> %>
+
+
+<style>
+body { margin: 0; padding: 0; }
+#map { position: absolute; top: 0; bottom: 0; height: 600px; width: 100%; }
+
+
+#menu {
+background: #fff;
+position: absolute;
+z-index: 1;
+top: 10px;
+right: 10px;
+border-radius: 3px;
+width: 120px;
+border: 1px solid rgba(0, 0, 0, 0.4);
+font-family: 'Open Sans', sans-serif;
+}
+ 
+#menu a {
+font-size: 13px;
+color: #404040;
+display: block;
+margin: 0;
+padding: 0;
+padding: 10px;
+text-decoration: none;
+border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+text-align: center;
+}
+ 
+#menu a:last-child {
+border: none;
+}
+ 
+#menu a:hover {
+background-color: #f8f8f8;
+color: #404040;
+}
+ 
+#menu a.active {
+background-color: #3887be;
+color: #ffffff;
+}
+ 
+#menu a.active:hover {
+background: #3074a4;
+}
+</style>
+ 
+<nav id="menu"></nav>
+<div id="map"></div>
+
+<%# <div id='map' style='position: absolute; top:0; bottom:0; height: 400px; width: 100%;'></div>
+
+
+<div class="p-4">
+  <div class="columns is-mobile">
+    <div class="columns is-12-mobile is-3-desktop">    
+    </div>
+    <div class="columns is-12-mobile is-9-desktop">    
+
+    </div>    
+  </div>
+</div> %>
+
+<script type="text/javascript">
+  mapboxgl.accessToken = 'pk.eyJ1IjoianVuZGFsaXNheSIsImEiOiJjanN5bTVkMDIweHo3NGFvZmNyczRlbWloIn0.T_vpyngPJVdbdW48nsOb-g';
+  
+  // var map = new mapboxgl.Map({
+  //   container: 'map',
+  //   style: 'mapbox://styles/mapbox/dark-v9',
+  //   center: [121.0321, 14.5657],
+  //   zoom: 14
+  // });
+
+  // mapboxgl.accessToken = 'pk.eyJ1IjoianVuZGFsaXNheSIsImEiOiJjanN5bTVkMDIweHo3NGFvZmNyczRlbWloIn0.T_vpyngPJVdbdW48nsOb-g';
+
+  const map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11',
+    center: [121.08109599040992, 14.559678695076176],
+    // center: [-122.486052, 37.830348],
+    zoom: 12
+  });
+   
+  map.on('load', () => {
+
+    // map.addSource('museums', {
+    //   type: 'vector',
+    //   url: 'mapbox://mapbox.2opop9hr'
+    // });
+
+    // map.addLayer({
+    //   'id': 'museums',
+    //   'type': 'circle',
+    //   'source': 'museums',
+    //   'layout': {
+    //     'visibility': 'visible'
+    //   },
+    //   'paint': {
+    //     'circle-radius': 8,
+    //     'circle-color': 'rgba(55,148,179,1)'
+    //   },
+    //   'source-layer': 'museum-cusco'
+    // });
+
+    map.addSource('route', {
+      'type': 'geojson',
+      'data': {
+        'type': 'Feature',
+        'properties': {},
+        'geometry': {
+          'type': 'LineString',
+          'coordinates': [
+            [121.08029674338385, 14.558868336129047],
+            [121.08024989103994, 14.557326500236186],
+            [121.07903172887427, 14.554877679920859],
+            [121.07692337127986, 14.554907912436127],
+            [121.07647046483365, 14.557447428930285],
+            [121.08393561246423, 14.55595093167599]
+          ]
+        }
+      },
+    });
+    
+    map.addLayer({
+      'id': 'route',
+      'name': 'Shaw-Pasig Palengke Market',
+      'type': 'line',
+      'source': 'route',
+      'layout': {
+        'line-join': 'round',
+        'line-cap': 'round'
+        },
+      'paint': {
+        'line-color': 'cyan',
+        'line-width': 8
+      }
+    });
+
+    map.addSource('route2', {
+      'type': 'geojson',
+      'data': {
+        'type': 'Feature',
+        'properties': {},
+        'geometry': {
+          'type': 'LineString',
+          'coordinates': [
+            [121.08361515077625, 14.559722370281238],
+            [121.08105294837803, 14.560752757275726],
+            [121.0818107828912, 14.563092940328254],
+            [121.08067403112143, 14.563407291436855],
+            [121.07939292992064, 14.56676034148207],
+            [121.07621724243417, 14.566498386295292],
+            [121.08393097822032, 14.585070011910204],
+          ]
+        }
+      },
+    });
+    
+    map.addLayer({
+      'id': 'route2',
+      'name': 'Pasig',
+      'type': 'line',
+      'source': 'route2',
+      'layout': {
+        'line-join': 'round',
+        'line-cap': 'round'
+        },
+      'paint': {
+        'line-color': 'orange',
+        'line-width': 8
+      }
+    });
+  });
+
+  // After the last frame rendered before the map enters an "idle" state.
+  map.on('idle', () => {
+    // If these two layers were not added to the map, abort
+    if (!map.getLayer('route') || !map.getLayer('route2')) {
+      return;
+    }
+
+
+    // Enumerate ids of the layers.
+    const toggleableLayerIds = ['route', 'route2'];
+     
+    // Set up the corresponding toggle button for each layer.
+    for (const id of toggleableLayerIds) {
+    // Skip layers that already have a button set up.
+      if (document.getElementById(id)) {
+        continue;
+      }
+       
+      // Create a link.
+      const link = document.createElement('a');
+      link.id = id;
+      link.href = '#';
+      link.textContent = id;
+      link.className = 'active';
+       
+      // Show or hide layer when the toggle is clicked.
+      link.onclick = function (e) {
+        const clickedLayer = this.textContent;
+        e.preventDefault();
+        e.stopPropagation();
+         
+        const visibility = map.getLayoutProperty(
+        clickedLayer,
+        'visibility'
+      );
+       
+      // Toggle layer visibility by changing the layout object's visibility property.
+      if (visibility === 'visible') {
+        map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+        this.className = '';
+      } else {
+        this.className = 'active';
+        map.setLayoutProperty(
+          clickedLayer,
+          'visibility',
+          'visible'
+        );
+      }
+    };
+     
+    const layers = document.getElementById('menu');
+    layers.appendChild(link);
+    }
+  });
+
+</script>
+
+
+

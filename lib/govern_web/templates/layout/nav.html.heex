@@ -1,0 +1,124 @@
+<nav class="navbar is-hidden-mobile" style="background-color: aliceblue;" aria-label="main navigation">
+  <div class="navbar-brand">
+    <div class="navbar-item">
+      <a href="/">
+        <img src="/images/pasig.png">     
+      </a>
+    </div>
+    <div class="navbar-burger" role="button" aria-label="menu" aria-expanded="false" data-target="navbar">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>                
+    </div>      
+  </div>
+  <div id="navbar" class="navbar-menu">
+
+    <div class="navbar-end">
+      <div class="navbar-item has-dropdown is-hoverable" x-data="{ state: false }">
+        <a href="#" class="navbar-link green" @click=" state = !state ">
+          <div class="menu-label">News</div>
+        </a>    
+        <div class="navbar-dropdown green" x-show="state">
+          <%= link to: Routes.article_path(@conn, :index), class: "navbar-item" do %>
+            <div class="menu-label">News</div>
+          <% end %>
+        </div>
+      </div>
+
+
+      <div class="navbar-item has-dropdown is-hoverable" x-data="{ state: false }">
+        <a href="#" class="navbar-link green" @click=" state = !state ">
+          <div class="menu-label">Permits</div>
+        </a>
+
+        <div class="navbar-dropdown green" x-show="state">
+          <%= link to: "/permits", class: "navbar-item" do %>
+            <div class="menu-label">Permits</div>
+          <% end %>
+        </div>              
+      </div>
+
+
+
+      <div class="navbar-item has-dropdown is-hoverable" x-data="{ state: false }">
+        <a href="#" class="navbar-link green" @click=" state = !state ">
+          <div class="menu-label">Transportation</div>
+        </a>
+
+        <div class="navbar-dropdown green" x-show="state">
+          <%= link to: Routes.page_path(@conn, :bus), class: "navbar-item" do %>
+            <div class="menu-label">Bus</div>
+          <% end %>
+          <span class="dropdown-divider"></span>
+          <%= link to: Routes.page_path(@conn, :jeep), class: "navbar-item" do %>
+            <div class="menu-label">Jeep</div>
+          <% end %>          
+          <%= link to: Routes.page_path(@conn, :tricycle), class: "navbar-item" do %>
+            <div class="menu-label">Tricycle</div>
+          <% end %>                    
+        </div>              
+      </div>
+
+
+      <div class="navbar-item has-dropdown is-hoverable" x-data="{ state: false }">
+        <a href="#" class="navbar-link green" @click=" state = !state ">
+          <div class="menu-label">Users</div>
+        </a>
+
+        <div class="navbar-dropdown green" x-show="state">
+          <%= link to: Routes.pantry_path(@conn, :index), class: "navbar-item" do %>
+            <div class="menu-label">Pantries</div>
+          <% end %>
+          <%= link to: Routes.page_path(@conn, :bus), class: "navbar-item" do %>
+            <div class="menu-label"> Users </div>
+          <% end %>
+          <span class="dropdown-divider"></span>
+        </div>        
+      </div>
+
+
+      <%= if @current_user do %>
+
+        <div class="navbar-item has-dropdown is-hoverable" x-data="{ state: false }">
+          <a href="#" class="navbar-link green" @click=" state = !state ">
+            <div class="menu-label">
+              Settings
+            </div>
+          </a>
+
+          <div class="navbar-dropdown green" x-show="state">
+            <%= link "Log Out", to: Routes.pow_session_path(@conn, :delete), method: :delete, class: "navbar-item menu-label has-text-danger" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</nav>
+
+
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+    // Check if there are any navbar burgers
+    if ($navbarBurgers.length > 0) {
+
+      // Add a click event on each of them
+      $navbarBurgers.forEach( el => {
+        el.addEventListener('click', () => {
+
+          // Get the target from the "data-target" attribute
+          const target = el.dataset.target;
+          const $target = document.getElementById(target);
+
+          // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+          el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+
+        });
+      });
+    }
+  });            
+</script>

@@ -1,0 +1,39 @@
+<h1>Show Permit</h1>
+
+<%= if @live_action in [:edit] do %>
+  <%= live_modal GovernWeb.PermitLive.FormComponent,
+    id: @permit.id,
+    title: @page_title,
+    action: @live_action,
+    permit: @permit,
+    return_to: Routes.permit_show_path(@socket, :show, @permit) %>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Photo:</strong>
+    <%= @permit.photo %>
+  </li>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @permit.name %>
+  </li>
+
+  <li>
+    <strong>Status:</strong>
+    <%= @permit.status %>
+  </li>
+
+  <li>
+    <strong>Step:</strong>
+    <%= @permit.step %>
+  </li>
+
+</ul>
+
+<div class="buttons is-small">
+  <%= live_patch "Edit", to: Routes.permit_index_path(@socket, :edit, @permit), class: "button is-warning" %>
+  <%= link "Delete", to: "#", phx_click: "delete", phx_value_id: @permit.id, data: [confirm: "Are you sure?"], class: "button is-danger"  %>
+</div>

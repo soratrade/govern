@@ -1,0 +1,140 @@
+<div class="columns is-mobile">
+  <div class="column is-hidden-mobile is-3-desktop">
+    <%# is-12-mobile %>
+
+    <div class="panel is-info">
+      <%= link to: Routes.article_path(GovernWeb.Endpoint, :index) do %>    
+        <div class="panel-heading">
+          <%= gettext("Articles") %>
+        </div>
+      <% end %>
+      <%= for ar <- @articles do %>
+        <div class="columns m-2" style="background: white">
+          <div class="column is-4">
+            <figure class="image">
+              <%= link to: Routes.article_path(GovernWeb.Endpoint, :show, ar) do %>
+                <img src={ar.photo} class="rounded">
+              <% end %>
+            </figure>
+          </div>
+          <div class="column is-8">
+            <%= link to: Routes.article_path(GovernWeb.Endpoint, :show, ar) do %>              
+              <small><%= ar.name %></small>
+            <% end %>
+          </div>                    
+        </div>
+      <% end %>   
+    </div>
+
+    <div class="panel is-info">
+      <%= link to: Routes.article_path(GovernWeb.Endpoint, :index) do %>    
+        <div class="panel-heading">
+          Permits
+        </div>
+      <% end %>
+      <%= for p <- @permits do %>
+        <div class="columns m-2" style="background: white">
+          <div class="column is-4">
+            <figure class="image">
+              <img src={p.photo} class="rounded">
+            </figure>
+          </div>
+          <div class="column is-8">
+            <%= link to: Routes.article_path(GovernWeb.Endpoint, :show, p) do %>              
+              <small><%= p.name %></small>
+            <% end %>
+          </div>                    
+        </div>
+      <% end %>   
+    </div>    
+  </div>
+
+
+
+  <div class="column is-12-mobile is-6-desktop">
+
+    <div class="columns is-mobile is-hidden-desktop">
+      <div class="column is-3-mobile">        
+        <%= link to: "/", class: "button is-fullwidth is-ghost is-hidden-desktop is-small" do %>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon" fill="dodgerblue"><path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"/></svg>
+        <% end %>
+      </div>
+      
+      <div class="column is-3-mobile">        
+        <%= link to: Routes.article_path(GovernWeb.Endpoint, :index), class: "button is-fullwidth is-ghost is-hidden-desktop is-small" do %>
+
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="icon" stroke="dodgerblue" fill="dodgerblue"><!-- Font Awesome Free 5.15.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M552 64H112c-20.858 0-38.643 13.377-45.248 32H24c-13.255 0-24 10.745-24 24v272c0 30.928 25.072 56 56 56h496c13.255 0 24-10.745 24-24V88c0-13.255-10.745-24-24-24zM48 392V144h16v248c0 4.411-3.589 8-8 8s-8-3.589-8-8zm480 8H111.422c.374-2.614.578-5.283.578-8V112h416v288zM172 280h136c6.627 0 12-5.373 12-12v-96c0-6.627-5.373-12-12-12H172c-6.627 0-12 5.373-12 12v96c0 6.627 5.373 12 12 12zm28-80h80v40h-80v-40zm-40 140v-24c0-6.627 5.373-12 12-12h136c6.627 0 12 5.373 12 12v24c0 6.627-5.373 12-12 12H172c-6.627 0-12-5.373-12-12zm192 0v-24c0-6.627 5.373-12 12-12h104c6.627 0 12 5.373 12 12v24c0 6.627-5.373 12-12 12H364c-6.627 0-12-5.373-12-12zm0-144v-24c0-6.627 5.373-12 12-12h104c6.627 0 12 5.373 12 12v24c0 6.627-5.373 12-12 12H364c-6.627 0-12-5.373-12-12zm0 72v-24c0-6.627 5.373-12 12-12h104c6.627 0 12 5.373 12 12v24c0 6.627-5.373 12-12 12H364c-6.627 0-12-5.373-12-12z"/></svg>
+        <% end %>
+      </div>
+
+      <div class="column is-3-mobile">        
+        <%= link to: Routes.user_path(GovernWeb.Endpoint, :show, @current_user.id), class: "button is-fullwidth is-ghost is-hidden-desktop is-small" do %>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon" stroke="dodgerblue" fill="dodgerblue"><path d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z"/></svg>
+        <% end %>
+      </div>
+    </div>
+    <%#     <.form let={f} for={:upload} action={Routes.audio_path(@socket, :upload)} options={[multipart: true]} > %>
+    <.form let={f} for={@changeset} action={""} phx_submit="save">
+
+        <div class="field">
+          <div class="control is-expanded has-icons-left">      
+            <%= error_tag f, :content %>
+            <%= textarea f, :content, class: "textarea", placeholder: "Enter post here" %>
+            <%= hidden_input f, :user_id, value: @current_user.id %>
+            <span class="icon is-left">
+              <i class="fas fa-pen"></i>
+            </span>
+          </div>
+            <div class="control">
+              <%= submit class: "button is-primary is-fullwidth", phx_disable_with: gettext("Saving...") do gettext("Post") end %>      
+            </div>    
+        </div>
+      </.form>
+
+
+    <%= for post <- @posts do %>
+      <div class="card p-4 my-2" id="post-{post.id}">
+        <div class="columns is-mobile is-multiline">
+          <div class="column is-3-mobile is-2-desktop has-text-centered">
+            <figure class="image is-inline-block">                
+            </figure>
+          </div>
+          <div class="column is-9-mobile is-10-desktop">
+            <%= raw post.content %>
+          </div>
+        </div>                        
+      </div>
+    <% end %>
+  </div>
+
+
+
+
+  <div class="column is-hidden-mobile is-3-desktop">
+    <div class="panel is-info">
+      <%= link to: Routes.article_path(GovernWeb.Endpoint, :index) do %>          
+        <div class="panel-heading">
+          Maps
+        </div>
+      <% end %>
+    </div>  
+    <div class="card has-text-centered mb-4">
+      <a href="/bus">
+        <img src="/images/bus.jpg">
+        Bus map
+      </a>
+    </div>
+    <div class="card has-text-centered mb-4">
+      <a href="/bus">
+        <img src="/images/ferry.jpg">
+        Ferry map
+      </a>
+    </div>
+    <div class="card has-text-centered mb-4">
+      <a href="/bus">
+        <img src="/images/jeep.jpg">
+        Jeepney map
+      </a>
+    </div>        
+  </div>      
+</div>
